@@ -26,6 +26,8 @@ public class GamePanel extends JPanel implements Runnable{
         this.setBackground(Color.cyan);
         this.addKeyListener(keys);
         this.setFocusable(true);
+        this.requestFocus();
+
     }
 
     public void startThread(){
