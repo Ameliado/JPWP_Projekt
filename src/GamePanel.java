@@ -4,18 +4,19 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
     // Labirynth grid settings
 
-    final int original_block_size = 16;
-    final int scale = 3;
-    final int block_size = scale * original_block_size;
-    final int grid_columns = 18;
-    final int grid_rows = 20;
-    final int panel_width = grid_columns * block_size;
-    final int panel_height = grid_rows * block_size;
+    public final int original_block_size = 16;
+    public final int scale = 3;
+    public final int block_size = scale * original_block_size;
+    public final int grid_columns = 18;
+    public final int grid_rows = 17;
+    public final int panel_width = grid_columns * block_size;
+    public  final int panel_height = grid_rows * block_size;
 
     int FPS = 60;
 
     KeyHandler keys = new KeyHandler();
     Thread game;
+    TileHandler tiles = new TileHandler(this);
     Player player = new Player(this,keys);
 
     public GamePanel(){
@@ -35,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        tiles.draw(g2);
         player.draw(g2);
         g2.dispose();
     }

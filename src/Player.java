@@ -23,7 +23,7 @@ public class Player {
     public void setDefaultMovement(){
         x_position = 200;
         y_position = 200;
-        change_position = p.block_size;
+        change_position = 10;
     }
 
     public void getPlayerImage(){
