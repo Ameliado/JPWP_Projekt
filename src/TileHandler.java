@@ -9,10 +9,9 @@ public class TileHandler {
 
     GamePanel p;
     Tile[] t;
-    int map_tile_number[][];
+    public int map_tile_number[][];
 
     TileHandler(GamePanel p){
-
         this.p = p;
         t = new Tile[3];
         map_tile_number = new int[p.grid_columns][p.grid_rows];
@@ -29,6 +28,10 @@ public class TileHandler {
 
             t[1] = new Tile();
             t[1].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall.png"));
+            t[1].collision = true;
+
+            t[2] = new Tile();
+            t[2].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/finish.png"));
         } catch(IOException e){
             e.printStackTrace();
         }

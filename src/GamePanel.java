@@ -14,10 +14,11 @@ public class GamePanel extends JPanel implements Runnable{
 
     int FPS = 60;
 
-    KeyHandler keys = new KeyHandler();
+    public KeyHandler keys = new KeyHandler();
     Thread game;
-    TileHandler tiles = new TileHandler(this);
-    Player player = new Player(this,keys);
+    public TileHandler tiles = new TileHandler(this);
+    public Player player = new Player(this,keys);
+    public CollisionHandler collision = new CollisionHandler(this);
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(panel_width,panel_height));
@@ -25,7 +26,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(keys);
         this.setFocusable(true);
         this.requestFocus();
-
     }
 
     public void startThread(){

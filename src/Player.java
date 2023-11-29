@@ -5,17 +5,29 @@ import javax.imageio.ImageIO;
 
 public class Player {
 
+    public int direction;
     public BufferedImage mov1,mov2;
 
     public int x_position;
     public int y_position;
     public int change_position;
+
+    public Rectangle solid_size;
+    public boolean player_collision = false;
+
     GamePanel p;
     KeyHandler keys;
 
     public Player(GamePanel p, KeyHandler keys){
         this.p = p;
         this.keys = keys;
+
+        solid_size = new Rectangle();
+        solid_size.x = 8;
+        solid_size.y = 16;
+        solid_size.width = p.block_size - 2* solid_size.x;
+        solid_size.height = p.block_size - solid_size.y;
+
         setDefaultMovement();
         getPlayerImage();
     }
@@ -23,7 +35,7 @@ public class Player {
     public void setDefaultMovement(){
         x_position = 200;
         y_position = 200;
-        change_position = 10;
+        change_position = 5;
     }
 
     public void getPlayerImage(){
@@ -40,41 +52,65 @@ public class Player {
     public boolean which_image;
 
     public void update(){
-        if(keys.up == true) {
-            if(which_image == false) {
-                which_image = true;
+        if( keys.up || keys.down || keys.left || keys.right){
+            if(keys.up) {
+                if(which_image == false) {
+                    which_image = true;
+                }
+                else {
+                    which_image = false;
+                }
+                direction = 1;
             }
-            else {
-                which_image = false;
+            else if(keys.down) {
+                if(which_image == false) {
+                    which_image = true;
+                }
+                else {
+                    which_image = false;
+                }
+                direction = 2;
             }
-            y_position -= change_position;
+            else if(keys.left) {
+                if(which_image == false) {
+                    which_image = true;
+                }
+                else {
+                    which_image = false;
+                }
+                direction = 3;
+            }
+            else if(keys.right) {
+                if(which_image == false) {
+                    which_image = true;
+                }
+                else {
+                    which_image = false;
+                }
+                direction = 4;
+            }
         }
-        else if(keys.down == true) {
-            if(which_image == false) {
-                which_image = true;
+
+
+        player_collision = false;
+        p.collision.tileChecker(this);
+        if (player_collision == false){
+            switch(direction) {
+                case 1:
+                    y_position -= change_position;
+                    break;
+                case 2:
+                    y_position += change_position;
+                    break;
+                case 3:
+                    x_position -= change_position;
+                    break;
+                case 4:
+                    x_position += change_position;
+                    break;
             }
-            else {
-                which_image = false;
-            }
-            y_position += change_position;
-        }
-        else if(keys.left == true) {
-            if(which_image == false) {
-                which_image = true;
-            }
-            else {
-                which_image = false;
-            }
-            x_position -= change_position;
-        }
-        else if(keys.right == true) {
-            if(which_image == false) {
-                which_image = true;
-            }
-            else {
-                which_image = false;
-            }
-            x_position += change_position;
+
+        direction = 0;
         }
     }
 

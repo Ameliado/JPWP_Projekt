@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 public class FinishGameButton extends JButton {
 
     public FinishGameButton(){
+
         this.setText("Zakończ grę");
         this.setBackground(Color.gray);
         this.setFocusable(false);
