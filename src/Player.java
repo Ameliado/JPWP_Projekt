@@ -33,9 +33,9 @@ public class Player {
     }
 
     public void setDefaultMovement(){
-        x_position = 200;
-        y_position = 200;
-        change_position = 5;
+        x_position = p.block_size;
+        y_position = p.grid_rows/2*p.block_size;
+        change_position = 3;
     }
 
     public void getPlayerImage(){
@@ -51,42 +51,31 @@ public class Player {
 
     public boolean which_image;
 
+    public void checkWhichImage(boolean which_image){
+        if(which_image == false) {
+            this.which_image = true;
+        }
+        else {
+            this.which_image = false;
+        }
+    }
+
     public void update(){
         if( keys.up || keys.down || keys.left || keys.right){
             if(keys.up) {
-                if(which_image == false) {
-                    which_image = true;
-                }
-                else {
-                    which_image = false;
-                }
+                checkWhichImage(which_image);
                 direction = 1;
             }
             else if(keys.down) {
-                if(which_image == false) {
-                    which_image = true;
-                }
-                else {
-                    which_image = false;
-                }
+                checkWhichImage(which_image);
                 direction = 2;
             }
             else if(keys.left) {
-                if(which_image == false) {
-                    which_image = true;
-                }
-                else {
-                    which_image = false;
-                }
+                checkWhichImage(which_image);
                 direction = 3;
             }
             else if(keys.right) {
-                if(which_image == false) {
-                    which_image = true;
-                }
-                else {
-                    which_image = false;
-                }
+                checkWhichImage(which_image);
                 direction = 4;
             }
         }

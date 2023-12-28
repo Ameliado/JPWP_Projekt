@@ -10,7 +10,7 @@ public class CollisionHandler {
         int player_left_x = pl.x_position + pl.solid_size.x;
         int player_right_x = player_left_x + pl.solid_size.width;
         int player_up_y = pl.y_position + pl.solid_size.y;
-        int player_down_y = player_up_y + p.block_size;
+        int player_down_y = player_up_y + pl.solid_size.height;
 
         int left_column = player_left_x/p.block_size;
         int right_column = player_right_x/p.block_size;

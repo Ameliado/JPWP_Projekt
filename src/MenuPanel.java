@@ -5,7 +5,7 @@ public class MenuPanel extends JPanel {
 
     public MenuPanel(int x, int y,int z){
         this.setSize(new Dimension(x,y));
-        this.setBackground(Color.green);
+        this.setBackground(Color.yellow);
         this.setLayout(null);
 
        FinishGameButton fgb = new FinishGameButton();
