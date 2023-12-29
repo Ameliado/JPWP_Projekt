@@ -83,7 +83,7 @@ public class Player {
 
         player_collision = false;
         p.collision.tileChecker(this);
-        if (player_collision == false){
+        if (!player_collision){
             switch(direction) {
                 case 1:
                     y_position -= change_position;
@@ -105,7 +105,7 @@ public class Player {
 
     public BufferedImage image;
     public void draw(Graphics2D g2){
-       if (which_image == true) {
+       if (which_image) {
            image = mov1;
        }
        else {

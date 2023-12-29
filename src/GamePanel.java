@@ -14,14 +14,13 @@ public class GamePanel extends JPanel implements Runnable{
     public  final int panel_height = grid_rows * block_size;
 
     int FPS = 60;
-    public int game_state = 1;
 
     public KeyHandler keys = new KeyHandler();
     Thread game;
     public TileHandler tiles = new TileHandler(this);
     public Player player = new Player(this,keys);
-    public CollisionHandler collision = new CollisionHandler(this);
-    public ObjectHandler objects = new ObjectHandler(this,t);
+    public CollisionHandler collision = new CollisionHandler(this,keys);
+    public TaskHandler objects = new TaskHandler(this);
 
     public GamePanel(TaskPanel t){
         this.t = t;
@@ -29,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setBackground(Color.cyan);
         this.addKeyListener(keys);
         this.setFocusable(true);
-        this.requestFocus();
+
     }
 
     public void startThread(){
@@ -57,20 +56,22 @@ public class GamePanel extends JPanel implements Runnable{
             t_last = t_current;
 
             if (delta >= 1){
-                switch (game_state) {
-                    case 0: //pause
+                switch (GameState.state) {
+                    case PAUSE: //pause
                         break;
-                    case 1: //game
-                        setFocusable(true);
+                    case GAME: //game
+                        this.setFocusable(true);
+                        this.requestFocus();
                         t.setFocusable(false);
                         player.update();
                         repaint();
                         break;
-                    case 2: //task
-                        setFocusable(false);
+                    case TASK: //task
+                        this.setFocusable(false);
                         t.setFocusable(true);
+                        t.requestFocus();
                         break;
-                    case 3: //finish
+                    case FINISH: //finish
                         break;
                 }
                 delta--;

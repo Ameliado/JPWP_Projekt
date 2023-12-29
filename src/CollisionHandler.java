@@ -3,11 +3,11 @@ import javax.swing.*;
 public class CollisionHandler {
 
     GamePanel p;
-    MenuPanel m;
-    TaskPanel t;
+    KeyHandler keys;
 
-    public CollisionHandler(GamePanel p){
+    public CollisionHandler(GamePanel p, KeyHandler keys){
         this.p = p;
+        this.keys = keys;
     }
 
     public void tileChecker(Player pl){
@@ -33,10 +33,20 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if (tile1 > 2 || tile2 > 2){
-                    p.game_state = 2;
-                    if (tile1 > 2) p.objects.whatObject(tile1);
-                    if (tile2 > 2) p.objects.whatObject(tile2);
+                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                    GameState.state = GameState.TASK;
+                    if (tile1 > 2)
+                    {
+                        p.objects.whatObject(tile1);
+                        p.tiles.map_tile_number[left_column][up_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
+                    if (tile2 > 2)
+                    {
+                        p.objects.whatObject(tile2);
+                        p.tiles.map_tile_number[right_column][up_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
                 }
                 break;
             case 2:
@@ -48,10 +58,20 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if (tile1 > 2 || tile2 > 2){
-                    p.game_state = 2;
-                    if (tile1 > 2) p.objects.whatObject(tile1);
-                    if (tile2 > 2) p.objects.whatObject(tile2);
+                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                    GameState.state = GameState.TASK;
+                    if (tile1 > 2)
+                    {
+                        p.objects.whatObject(tile1);
+                        p.tiles.map_tile_number[left_column][down_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
+                    if (tile2 > 2)
+                    {
+                        p.objects.whatObject(tile2);
+                        p.tiles.map_tile_number[right_column][down_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
                 }
                 break;
             case 3:
@@ -63,10 +83,20 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if (tile1 > 2 || tile2 > 2){
-                    p.game_state = 2;
-                    if (tile1 > 2) p.objects.whatObject(tile1);
-                    if (tile2 > 2) p.objects.whatObject(tile2);
+                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                    GameState.state = GameState.TASK;
+                    if (tile1 > 2)
+                    {
+                        p.objects.whatObject(tile1);
+                        p.tiles.map_tile_number[left_column][up_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
+                    if (tile2 > 2)
+                    {
+                        p.objects.whatObject(tile2);
+                        p.tiles.map_tile_number[left_column][down_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
                 }
                 break;
             case 4:
@@ -78,10 +108,20 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if (tile1 > 2 || tile2 > 2){
-                    p.game_state = 2;
-                    if (tile1 > 2) p.objects.whatObject(tile1);
-                    if (tile2 > 2) p.objects.whatObject(tile2);
+                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                    GameState.state = GameState.TASK;
+                    if (tile1 > 2)
+                    {
+                        p.objects.whatObject(tile1);
+                        p.tiles.map_tile_number[right_column][up_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
+                    if (tile2 > 2)
+                    {
+                        p.objects.whatObject(tile2);
+                        p.tiles.map_tile_number[right_column][down_row] = 0;
+                        GameState.state = GameState.GAME;
+                    }
                 }
                 break;
         }
