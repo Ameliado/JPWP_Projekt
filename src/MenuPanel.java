@@ -3,6 +3,8 @@ import java.awt.*;
 
 public class MenuPanel extends JPanel {
 
+    final int menu_height = 50;
+
     public MenuPanel(int x, int y,int z){
         this.setSize(new Dimension(x,y));
         this.setBackground(Color.yellow);

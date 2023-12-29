@@ -1,6 +1,10 @@
+import javax.swing.*;
+
 public class CollisionHandler {
 
     GamePanel p;
+    MenuPanel m;
+    TaskPanel t;
 
     public CollisionHandler(GamePanel p){
         this.p = p;
@@ -28,6 +32,12 @@ public class CollisionHandler {
                 if (p.tiles.t[tile1].collision || p.tiles.t[tile2].collision){
                     pl.player_collision = true;
                 }
+
+                if (tile1 > 2 || tile2 > 2){
+                    p.game_state = 2;
+                    if (tile1 > 2) p.objects.whatObject(tile1);
+                    if (tile2 > 2) p.objects.whatObject(tile2);
+                }
                 break;
             case 2:
                 down_row = (player_down_y + pl.change_position)/p.block_size;
@@ -36,6 +46,12 @@ public class CollisionHandler {
 
                 if (p.tiles.t[tile1].collision || p.tiles.t[tile2].collision){
                     pl.player_collision = true;
+                }
+
+                if (tile1 > 2 || tile2 > 2){
+                    p.game_state = 2;
+                    if (tile1 > 2) p.objects.whatObject(tile1);
+                    if (tile2 > 2) p.objects.whatObject(tile2);
                 }
                 break;
             case 3:
@@ -46,6 +62,12 @@ public class CollisionHandler {
                 if (p.tiles.t[tile1].collision || p.tiles.t[tile2].collision){
                     pl.player_collision = true;
                 }
+
+                if (tile1 > 2 || tile2 > 2){
+                    p.game_state = 2;
+                    if (tile1 > 2) p.objects.whatObject(tile1);
+                    if (tile2 > 2) p.objects.whatObject(tile2);
+                }
                 break;
             case 4:
                 right_column = (player_right_x + pl.change_position)/p.block_size;
@@ -54,6 +76,12 @@ public class CollisionHandler {
 
                 if (p.tiles.t[tile1].collision || p.tiles.t[tile2].collision){
                     pl.player_collision = true;
+                }
+
+                if (tile1 > 2 || tile2 > 2){
+                    p.game_state = 2;
+                    if (tile1 > 2) p.objects.whatObject(tile1);
+                    if (tile2 > 2) p.objects.whatObject(tile2);
                 }
                 break;
         }

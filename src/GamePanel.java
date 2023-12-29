@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
     // Labirynth grid settings
+    TaskPanel t;
 
     public final int original_block_size = 16;
     public final int scale = 3;
@@ -13,14 +14,17 @@ public class GamePanel extends JPanel implements Runnable{
     public  final int panel_height = grid_rows * block_size;
 
     int FPS = 60;
+    public int game_state = 1;
 
     public KeyHandler keys = new KeyHandler();
     Thread game;
     public TileHandler tiles = new TileHandler(this);
     public Player player = new Player(this,keys);
     public CollisionHandler collision = new CollisionHandler(this);
+    public ObjectHandler objects = new ObjectHandler(this,t);
 
-    public GamePanel(){
+    public GamePanel(TaskPanel t){
+        this.t = t;
         this.setPreferredSize(new Dimension(panel_width,panel_height));
         this.setBackground(Color.cyan);
         this.addKeyListener(keys);
@@ -53,10 +57,25 @@ public class GamePanel extends JPanel implements Runnable{
             t_last = t_current;
 
             if (delta >= 1){
-                player.update();
-                repaint();
+                switch (game_state) {
+                    case 0: //pause
+                        break;
+                    case 1: //game
+                        setFocusable(true);
+                        t.setFocusable(false);
+                        player.update();
+                        repaint();
+                        break;
+                    case 2: //task
+                        setFocusable(false);
+                        t.setFocusable(true);
+                        break;
+                    case 3: //finish
+                        break;
+                }
                 delta--;
             }
+
         }
     }
 

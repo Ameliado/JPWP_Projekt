@@ -10,11 +10,16 @@ public class GameWindow extends JFrame{
     GameWindow(String name){
         super();
 
-        GamePanel p = new GamePanel();
+        TaskPanel t = new TaskPanel();
+        GamePanel p = new GamePanel(t);
         MenuPanel m = new MenuPanel(window_width,menu_height, window_width - p.panel_width);
         p.setBounds(0,menu_height,p.panel_width,p.panel_height);
+        t.setBounds(p.panel_width,menu_height,window_width-p.panel_width,p.panel_height);
+        t.setBackground(Color.darkGray);
 
         add(p);
+        //getContentPane().add(t);
+        add(t);
         add(m);
 
         this.setSize(window_width,window_height );
