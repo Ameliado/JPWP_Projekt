@@ -72,6 +72,10 @@ public class GamePanel extends JPanel implements Runnable{
                         t.requestFocus();
                         break;
                     case FINISH: //finish
+                        this.setFocusable(false);
+                        t.setFocusable(true);
+                        t.requestFocus();
+                        t.finishPanel();
                         break;
                 }
                 delta--;

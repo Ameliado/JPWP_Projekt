@@ -84,6 +84,22 @@ public class TaskPanel extends JPanel {
         repaint();
     }
 
+    public void finishPanel(){
+        Component[] componentList = this.getComponents();
 
+        for(Component c : componentList){
+            if(c instanceof JLabel){
+                this.remove(c);
+            }
+        }
+        revalidate();
+        repaint();
+
+        JLabel jlabel = new JLabel("KONIEC GRY");
+        jlabel.setFont(new Font("Verdana", 1, 20));
+        jlabel.setForeground(Color.white);
+        jlabel.setBounds(130,0,w.window_width-p.panel_width,50);
+        this.add(jlabel);
+    }
 
 }

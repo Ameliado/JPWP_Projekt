@@ -38,14 +38,19 @@ public class CollisionHandler {
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
-                        p.tiles.map_tile_number[left_column][up_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)){
+                            p.tiles.map_tile_number[left_column][up_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
                     }
                     if (tile2 > 2)
                     {
                         p.objects.whatObject(tile2);
-                        p.tiles.map_tile_number[right_column][up_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)){
+                            p.tiles.map_tile_number[right_column][up_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
+
                     }
                 }
                 break;
@@ -63,14 +68,20 @@ public class CollisionHandler {
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
-                        p.tiles.map_tile_number[left_column][down_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)){
+                            p.tiles.map_tile_number[left_column][down_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
+
                     }
                     if (tile2 > 2)
                     {
                         p.objects.whatObject(tile2);
-                        p.tiles.map_tile_number[right_column][down_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)) {
+                            p.tiles.map_tile_number[right_column][down_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
+
                     }
                 }
                 break;
@@ -88,14 +99,20 @@ public class CollisionHandler {
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
-                        p.tiles.map_tile_number[left_column][up_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)) {
+                            p.tiles.map_tile_number[left_column][up_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
+
                     }
                     if (tile2 > 2)
                     {
                         p.objects.whatObject(tile2);
-                        p.tiles.map_tile_number[left_column][down_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)) {
+                            p.tiles.map_tile_number[left_column][down_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
+
                     }
                 }
                 break;
@@ -113,14 +130,20 @@ public class CollisionHandler {
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
-                        p.tiles.map_tile_number[right_column][up_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)) {
+                            p.tiles.map_tile_number[right_column][up_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
+
                     }
                     if (tile2 > 2)
                     {
                         p.objects.whatObject(tile2);
-                        p.tiles.map_tile_number[right_column][down_row] = 0;
-                        GameState.state = GameState.GAME;
+                        if (!(GameState.state == GameState.FINISH)) {
+                            p.tiles.map_tile_number[right_column][down_row] = 0;
+                            GameState.state = GameState.GAME;
+                        }
+
                     }
                 }
                 break;
