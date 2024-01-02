@@ -12,16 +12,13 @@ public class TaskHandler {
     }
 
     public void whatObject(int tile){
-        switch (tile){
-            case 3,4:
-                done = false;
+        while(GameState.state == GameState.TASK){
+            switch (tile){
+                case 3,4:
+                    done = false;
 
-                p.t.drawTrashImage(tile);
-                p.t.addTrashButtons();
-
-                while (!done){
-                    //System.out.println(TrashClickState.state);
-                    System.out.println("");
+                    p.t.drawTrashImage(tile);
+                    p.t.addTrashButtons();
 
                     if (TrashClickState.state == TrashClickState.BIO){
                         trash_collected += 1;
@@ -29,22 +26,17 @@ public class TaskHandler {
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
-                        done = true;
+                        GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                }
-                //System.out.println(TrashClickState.state);
-                //System.out.println(GameState.state);
-                break;
-            case 5:
-                done = false;
-
-                p.t.drawTrashImage(tile);
-                p.t.addTrashButtons();
-
-                while (!done){
                     //System.out.println(TrashClickState.state);
-                    System.out.println("");
+                    //System.out.println(GameState.state);
+                    break;
+                case 5:
+                    done = false;
+
+                    p.t.drawTrashImage(tile);
+                    p.t.addTrashButtons();
 
                     if (TrashClickState.state == TrashClickState.GLASS){
                         trash_collected += 1;
@@ -52,66 +44,54 @@ public class TaskHandler {
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
-                        done = true;
+                        GameState.state = GameState.GAME;
+
                     }
                     //else zycko -1
-                }
-                System.out.println(TrashClickState.state);
-                System.out.println(GameState.state);
-                break;
-            case 6,7:
-                done = false;
+                    System.out.println(TrashClickState.state);
+                    System.out.println(GameState.state);
+                    break;
+                case 6,7:
+                    done = false;
 
-                p.t.drawTrashImage(tile);
-                p.t.addTrashButtons();
-                while (!done){
-                    //System.out.println(TrashClickState.state);
-                    System.out.println("");
-
+                    p.t.drawTrashImage(tile);
+                    p.t.addTrashButtons();
                     if (TrashClickState.state == TrashClickState.PAPER){
                         trash_collected += 1;
                         p.w.m.showPoints(trash_collected);
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
-                        done = true;
+                        GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                }
-                System.out.println(TrashClickState.state);
-                System.out.println(GameState.state);
-                break;
-            case 8,9:
-                done = false;
+                    System.out.println(TrashClickState.state);
+                    System.out.println(GameState.state);
+                    break;
+                case 8,9:
+                    done = false;
 
-                p.t.drawTrashImage(tile);
-                p.t.addTrashButtons();
-                while (!done){
-                    //System.out.println(TrashClickState.state);
-                    System.out.println("");
-
+                    p.t.drawTrashImage(tile);
+                    p.t.addTrashButtons();
                     if (TrashClickState.state == TrashClickState.PLASTIC){
                         trash_collected += 1;
                         p.w.m.showPoints(trash_collected);
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
-                        done = true;
+                        GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                }
-                System.out.println(TrashClickState.state);
-                System.out.println(GameState.state);
-                break;
-            case 10,11:
-                done = false;
+                    System.out.println(TrashClickState.state);
+                    System.out.println(GameState.state);
+                    break;
+                case 10,11:
+                    done = false;
 
-                p.t.drawTrashImage(tile);
-                p.t.addTrashButtons();
+                    p.t.drawTrashImage(tile);
+                    p.t.addTrashButtons();
 
-                while (!done){
-                    //System.out.println(TrashClickState.state);
-                    System.out.println("");
+                    //System.out.println("");
 
                     if (TrashClickState.state == TrashClickState.WASTE){
                         p.t.removeTrashButtons();
@@ -119,13 +99,13 @@ public class TaskHandler {
                         TrashClickState.state = TrashClickState.NULL;
                         trash_collected += 1;
                         p.w.m.showPoints(trash_collected);
-                        done = true;
+                        GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                }
-                //System.out.println(TrashClickState.state);
-                //System.out.println(GameState.state);
-                break;
+                    //System.out.println(TrashClickState.state);
+                    //System.out.println(GameState.state);
+                    break;
+            }
         }
     }
 
