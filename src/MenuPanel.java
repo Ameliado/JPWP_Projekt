@@ -6,16 +6,18 @@ public class MenuPanel extends JPanel {
     final int menu_height = 50;
     GameWindow w;
 
-    public MenuPanel(int x, int y,int z, GameWindow w){
+    public MenuPanel(int x,int z, GameWindow w){
         this.w = w;
-        this.setSize(new Dimension(x,y));
+        this.setSize(new Dimension(x,menu_height));
         this.setBackground(Color.yellow);
         this.setLayout(null);
 
+        showPoints(w.p.objects.trash_collected);
+
        FinishGameButton fgb = new FinishGameButton();
        add(fgb);
-       fgb.setBounds(x-z/2,0,z/2,y);
-       fgb.setPreferredSize(new Dimension(x-1000,y));
+       fgb.setBounds(x-z/2,0,z/2,menu_height);
+       fgb.setPreferredSize(new Dimension(x-1000,menu_height));
 
     }
 
@@ -34,8 +36,8 @@ public class MenuPanel extends JPanel {
         jlabel.setFont(new Font("Verdana", 1, 20));
         jlabel.setBounds(0,0,w.window_width/4,menu_height);
         this.add(jlabel);
-        revalidate();
-        repaint();
+        //revalidate();
+        //repaint();
     }
 
 }

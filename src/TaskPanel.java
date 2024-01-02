@@ -10,16 +10,26 @@ public class TaskPanel extends JPanel {
         super();
         this.setLayout(null);
         this.w = w;
-
+        setBackground(Color.DARK_GRAY);
     }
 
     public void drawTrashImage(int tile){
         p = w.getGamePanel();
+
+        JLabel jlabel = new JLabel("Do jakiego kosza powinien");
+        jlabel.setFont(new Font("Verdana", 1, 20));
+        jlabel.setForeground(Color.white);
+        jlabel.setBounds(60,0,w.window_width-p.panel_width,50);
+        JLabel jlabel2 = new JLabel("trafić ten przedmiot?");
+        jlabel2.setFont(new Font("Verdana", 1, 20));
+        jlabel2.setForeground(Color.white);
+        jlabel2.setBounds(90,30,w.window_width-p.panel_width,50);
+
         Image image = p.tiles.t[tile].image.getScaledInstance(160, 160, Image.SCALE_DEFAULT);
         TrashImage trash = new TrashImage("trash",130,100,160,160,new ImageIcon(image));
-        //JLabel label = new JLabel("Do jakiego kosza należy wrzucić ten przedmiot?");
-        //label.setBounds(20,50,50,50);
-        //this.add(label);
+
+        this.add(jlabel);
+        this.add(jlabel2);
         this.add(trash);
     }
 

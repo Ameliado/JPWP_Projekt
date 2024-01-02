@@ -4,7 +4,6 @@ import java.awt.*;
 public class TaskHandler {
 
     GamePanel p;
-    Boolean done = false;
     int trash_collected = 0;
 
     public TaskHandler(GamePanel p){
@@ -15,7 +14,6 @@ public class TaskHandler {
         while(GameState.state == GameState.TASK){
             switch (tile){
                 case 3,4:
-                    done = false;
 
                     p.t.drawTrashImage(tile);
                     p.t.addTrashButtons();
@@ -29,11 +27,8 @@ public class TaskHandler {
                         GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                    //System.out.println(TrashClickState.state);
-                    //System.out.println(GameState.state);
                     break;
                 case 5:
-                    done = false;
 
                     p.t.drawTrashImage(tile);
                     p.t.addTrashButtons();
@@ -48,11 +43,8 @@ public class TaskHandler {
 
                     }
                     //else zycko -1
-                    System.out.println(TrashClickState.state);
-                    System.out.println(GameState.state);
                     break;
                 case 6,7:
-                    done = false;
 
                     p.t.drawTrashImage(tile);
                     p.t.addTrashButtons();
@@ -65,11 +57,8 @@ public class TaskHandler {
                         GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                    System.out.println(TrashClickState.state);
-                    System.out.println(GameState.state);
                     break;
                 case 8,9:
-                    done = false;
 
                     p.t.drawTrashImage(tile);
                     p.t.addTrashButtons();
@@ -82,16 +71,11 @@ public class TaskHandler {
                         GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                    System.out.println(TrashClickState.state);
-                    System.out.println(GameState.state);
                     break;
                 case 10,11:
-                    done = false;
 
                     p.t.drawTrashImage(tile);
                     p.t.addTrashButtons();
-
-                    //System.out.println("");
 
                     if (TrashClickState.state == TrashClickState.WASTE){
                         p.t.removeTrashButtons();
@@ -102,8 +86,6 @@ public class TaskHandler {
                         GameState.state = GameState.GAME;
                     }
                     //else zycko -1
-                    //System.out.println(TrashClickState.state);
-                    //System.out.println(GameState.state);
                     break;
             }
         }

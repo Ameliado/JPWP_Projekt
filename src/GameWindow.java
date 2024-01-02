@@ -5,7 +5,6 @@ public class GameWindow extends JFrame{
     //Program window settings
     final int window_width = 1280;
     final int window_height = 1024;
-    final int menu_height = 50;
 
     GamePanel p;
     MenuPanel m;
@@ -15,10 +14,10 @@ public class GameWindow extends JFrame{
 
         TaskPanel t = new TaskPanel(this);
         p = new GamePanel(this,t);
-        m = new MenuPanel(window_width,menu_height, window_width - p.panel_width,this);
-        p.setBounds(0,menu_height,p.panel_width,p.panel_height);
-        t.setBounds(p.panel_width,menu_height,window_width-p.panel_width,p.panel_height);
-        t.setBackground(Color.darkGray);
+        m = new MenuPanel(window_width, window_width - p.panel_width,this);
+        p.setBounds(0,m.menu_height,p.panel_width,p.panel_height);
+        t.setBounds(p.panel_width,m.menu_height,window_width-p.panel_width,p.panel_height);
+
 
         add(p);
         add(t);
