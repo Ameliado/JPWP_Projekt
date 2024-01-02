@@ -33,7 +33,7 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
                     if (tile1 > 2)
                     {
@@ -58,7 +58,7 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
                     if (tile1 > 2)
                     {
@@ -83,7 +83,7 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
                     if (tile1 > 2)
                     {
@@ -108,7 +108,7 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
-                if ((tile1 > 2 || tile2 > 2)&&keys.enter){
+                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
                     if (tile1 > 2)
                     {

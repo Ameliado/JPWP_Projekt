@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
-    // Labirynth grid settings
+    GameWindow w;
     TaskPanel t;
 
     public final int original_block_size = 16;
@@ -15,21 +15,21 @@ public class GamePanel extends JPanel implements Runnable{
 
     int FPS = 60;
 
+    public GamePanel(GameWindow w,TaskPanel t){
+        this.w = w;
+        this.t = t;
+        this.setPreferredSize(new Dimension(panel_width,panel_height));
+        this.setBackground(Color.cyan);
+        this.addKeyListener(keys);
+        this.setFocusable(true);
+    }
+
     public KeyHandler keys = new KeyHandler();
     Thread game;
     public TileHandler tiles = new TileHandler(this);
     public Player player = new Player(this,keys);
     public CollisionHandler collision = new CollisionHandler(this,keys);
     public TaskHandler objects = new TaskHandler(this);
-
-    public GamePanel(TaskPanel t){
-        this.t = t;
-        this.setPreferredSize(new Dimension(panel_width,panel_height));
-        this.setBackground(Color.cyan);
-        this.addKeyListener(keys);
-        this.setFocusable(true);
-
-    }
 
     public void startThread(){
         game = new Thread(this);

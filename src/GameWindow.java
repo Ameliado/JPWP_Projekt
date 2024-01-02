@@ -8,13 +8,14 @@ public class GameWindow extends JFrame{
     final int menu_height = 50;
 
     GamePanel p;
+    MenuPanel m;
 
     GameWindow(String name){
         super();
 
         TaskPanel t = new TaskPanel(this);
-        p = new GamePanel(t);
-        MenuPanel m = new MenuPanel(window_width,menu_height, window_width - p.panel_width);
+        p = new GamePanel(this,t);
+        m = new MenuPanel(window_width,menu_height, window_width - p.panel_width,this);
         p.setBounds(0,menu_height,p.panel_width,p.panel_height);
         t.setBounds(p.panel_width,menu_height,window_width-p.panel_width,p.panel_height);
         t.setBackground(Color.darkGray);
@@ -36,6 +37,9 @@ public class GameWindow extends JFrame{
 
     public GamePanel getGamePanel(){
         return p;
+    }
+    public MenuPanel getMenuPanel(){
+        return m;
     }
 
 

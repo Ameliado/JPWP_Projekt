@@ -5,10 +5,10 @@ public class TaskHandler {
 
     GamePanel p;
     Boolean done = false;
+    int trash_collected = 0;
 
     public TaskHandler(GamePanel p){
         this.p = p;
-
     }
 
     public void whatObject(int tile){
@@ -21,9 +21,11 @@ public class TaskHandler {
 
                 while (!done){
                     //System.out.println(TrashClickState.state);
+                    System.out.println("");
 
                     if (TrashClickState.state == TrashClickState.BIO){
-                        //nw punkt +1 i fajnie
+                        trash_collected += 1;
+                        p.w.m.showPoints(trash_collected);
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
@@ -41,10 +43,12 @@ public class TaskHandler {
                 p.t.addTrashButtons();
 
                 while (!done){
-                    System.out.println(TrashClickState.state);
+                    //System.out.println(TrashClickState.state);
+                    System.out.println("");
 
                     if (TrashClickState.state == TrashClickState.GLASS){
-                        //nw punkt +1 i fajnie
+                        trash_collected += 1;
+                        p.w.m.showPoints(trash_collected);
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
@@ -61,9 +65,12 @@ public class TaskHandler {
                 p.t.drawTrashImage(tile);
                 p.t.addTrashButtons();
                 while (!done){
+                    //System.out.println(TrashClickState.state);
+                    System.out.println("");
 
                     if (TrashClickState.state == TrashClickState.PAPER){
-                        //nw punkt +1 i fajnie
+                        trash_collected += 1;
+                        p.w.m.showPoints(trash_collected);
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
@@ -80,9 +87,12 @@ public class TaskHandler {
                 p.t.drawTrashImage(tile);
                 p.t.addTrashButtons();
                 while (!done){
+                    //System.out.println(TrashClickState.state);
+                    System.out.println("");
 
                     if (TrashClickState.state == TrashClickState.PLASTIC){
-                        //nw punkt +1 i fajnie
+                        trash_collected += 1;
+                        p.w.m.showPoints(trash_collected);
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
@@ -100,19 +110,21 @@ public class TaskHandler {
                 p.t.addTrashButtons();
 
                 while (!done){
-                    System.out.println(TrashClickState.state);
+                    //System.out.println(TrashClickState.state);
+                    System.out.println("");
 
                     if (TrashClickState.state == TrashClickState.WASTE){
-                        //nw punkt +1 i fajnie
                         p.t.removeTrashButtons();
                         p.t.removeTrashImage();
                         TrashClickState.state = TrashClickState.NULL;
+                        trash_collected += 1;
+                        p.w.m.showPoints(trash_collected);
                         done = true;
                     }
                     //else zycko -1
                 }
-                System.out.println(TrashClickState.state);
-                System.out.println(GameState.state);
+                //System.out.println(TrashClickState.state);
+                //System.out.println(GameState.state);
                 break;
         }
     }
