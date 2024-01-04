@@ -32,6 +32,7 @@ public class TileHandler {
 
             t[2] = new Tile();
             t[2].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/finish.png"));
+            t[2].collision = true;
 
             t[3] = new Tile();
             t[3].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/bio1.png"));

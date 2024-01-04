@@ -41,6 +41,9 @@ public class MenuPanel extends JPanel {
         jlabel2.setFont(new Font("Verdana", 1, 20));
         jlabel2.setBounds(w.window_width / 4, 0, w.window_width / 4, menu_height);
         this.add(jlabel2);
+
+
     }
+
 
 }

@@ -20,6 +20,7 @@ public class TaskPanel extends JPanel {
         jlabel.setFont(new Font("Verdana", 1, 20));
         jlabel.setForeground(Color.white);
         jlabel.setBounds(60,0,w.window_width-p.panel_width,50);
+
         JLabel jlabel2 = new JLabel("trafić ten przedmiot?");
         jlabel2.setFont(new Font("Verdana", 1, 20));
         jlabel2.setForeground(Color.white);
@@ -35,6 +36,12 @@ public class TaskPanel extends JPanel {
 
     public void removeTrashImage(){
         Component[] componentList = this.getComponents();
+
+        for(Component c : componentList){
+            if(c instanceof JLabel){
+                this.remove(c);
+            }
+        }
 
         for(Component c : componentList){
             if(c instanceof TrashImage){
@@ -84,7 +91,73 @@ public class TaskPanel extends JPanel {
         repaint();
     }
 
-    public void finishPanel(){
+    public void finishPanel(int trash_collected, int lives,float game_time){
+
+        Component[] componentList = this.getComponents();
+
+        if (trash_collected == 9 || lives == 0){
+
+            for(Component c : componentList){
+                if(c instanceof JLabel){
+                    this.remove(c);
+                }
+            }
+            revalidate();
+            repaint();
+
+            JLabel jlabel = new JLabel("KONIEC GRY");
+            jlabel.setFont(new Font("Verdana", 1, 20));
+            jlabel.setForeground(Color.white);
+            jlabel.setBounds(130,0,w.window_width-p.panel_width,50);
+
+            JLabel jlabel2 = new JLabel("Czas gry: "+game_time+ "s");
+            jlabel2.setFont(new Font("Verdana", 1, 20));
+            jlabel2.setForeground(Color.white);
+            jlabel2.setBounds(90,50,250,50);
+
+            this.add(jlabel);
+            this.add(jlabel2);
+
+            revalidate();
+            repaint();
+
+            while (!(GameState.state == GameState.RESTART)){
+
+            }
+
+
+        }
+        else {
+
+            for(Component c : componentList){
+                if(c instanceof JLabel){
+                    this.remove(c);
+                }
+            }
+            revalidate();
+            repaint();
+
+            JLabel jlabel3 = new JLabel("Zostało jeszcze "+(9-trash_collected));
+            jlabel3.setFont(new Font("Verdana", 1, 20));
+            jlabel3.setForeground(Color.white);
+            jlabel3.setBounds(90,0,400,50);
+
+            JLabel jlabel4 = new JLabel("przedmiotów do zebrania!");
+            jlabel4.setFont(new Font("Verdana", 1, 20));
+            jlabel4.setForeground(Color.white);
+            jlabel4.setBounds(50,30,400,50);
+
+            this.add(jlabel3);
+            this.add(jlabel4);
+
+            GameState.state = GameState.GAME;
+
+        }
+
+
+    }
+
+    public void removeLabels(){
         Component[] componentList = this.getComponents();
 
         for(Component c : componentList){
@@ -94,12 +167,7 @@ public class TaskPanel extends JPanel {
         }
         revalidate();
         repaint();
-
-        JLabel jlabel = new JLabel("KONIEC GRY");
-        jlabel.setFont(new Font("Verdana", 1, 20));
-        jlabel.setForeground(Color.white);
-        jlabel.setBounds(130,0,w.window_width-p.panel_width,50);
-        this.add(jlabel);
     }
+
 
 }

@@ -33,8 +33,13 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
+                if (tile1 == 2 || tile2 == 2){
+                    finishCollisionFix();
+                }
+
                 if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
+                    p.t.removeLabels();
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
@@ -63,8 +68,13 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
+                if (tile1 == 2 || tile2 == 2){
+                    finishCollisionFix();
+                }
+
                 if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
+                    p.t.removeLabels();
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
@@ -94,8 +104,13 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
+                if (tile1 == 2 || tile2 == 2){
+                    finishCollisionFix();
+                }
+
                 if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
+                    p.t.removeLabels();
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
@@ -125,8 +140,13 @@ public class CollisionHandler {
                     pl.player_collision = true;
                 }
 
+                if (tile1 == 2 || tile2 == 2){
+                    finishCollisionFix();
+                }
+
                 if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
                     GameState.state = GameState.TASK;
+                    p.t.removeLabels();
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
@@ -150,4 +170,12 @@ public class CollisionHandler {
         }
 
     }
+
+    public void finishCollisionFix(){
+        p.keys.right = false;
+        p.player.x_position -= p.block_size;
+        p.repaint();
+        GameState.state = GameState.FINISH;
+    }
+
 }

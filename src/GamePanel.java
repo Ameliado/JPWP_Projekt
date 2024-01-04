@@ -15,6 +15,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     int FPS = 60;
 
+    public float game_time_start,game_time_end;
+
     public GamePanel(GameWindow w,TaskPanel t){
         this.w = w;
         this.t = t;
@@ -44,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable{
         g2.dispose();
     }
 
+
     public void run(){
         double draw_interval = 1000000000/FPS;
         double delta = 0;
@@ -57,25 +60,29 @@ public class GamePanel extends JPanel implements Runnable{
 
             if (delta >= 1){
                 switch (GameState.state) {
-                    case PAUSE: //pause
+                    case PAUSE:
                         break;
-                    case GAME: //game
-                        this.setFocusable(true);
+                    case GAME:
+                        t.repaint();
                         this.requestFocus();
-                        t.setFocusable(false);
+                        this.revalidate();
                         player.update();
                         repaint();
                         break;
-                    case TASK: //task
+                    case TASK:
                         this.setFocusable(false);
+                        t.revalidate();
                         t.setFocusable(true);
                         t.requestFocus();
                         break;
-                    case FINISH: //finish
-                        this.setFocusable(false);
-                        t.setFocusable(true);
-                        t.requestFocus();
-                        t.finishPanel();
+                    case RESTART:
+                        game_time_start = System.nanoTime();
+                        player.setDefaultMovement();
+                        GameState.state = GameState.GAME;
+                        break;
+                    case FINISH:
+                        game_time_end = (System.nanoTime() - game_time_start)/1000000000;
+                        t.finishPanel(objects.trash_collected,objects.lives,game_time_end);
                         break;
                 }
                 delta--;
