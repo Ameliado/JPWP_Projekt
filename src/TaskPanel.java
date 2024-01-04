@@ -6,6 +6,8 @@ public class TaskPanel extends JPanel {
     public GameWindow w;
     public GamePanel p;
 
+    public int bonus = 0;
+
     public TaskPanel(GameWindow w){
         super();
         this.setLayout(null);
@@ -117,6 +119,65 @@ public class TaskPanel extends JPanel {
 
             this.add(jlabel);
             this.add(jlabel2);
+
+            if (trash_collected == 9){
+                JLabel jlabel3 = new JLabel("GRATULACJE");
+                jlabel3.setFont(new Font("Verdana", 1, 20));
+                jlabel3.setForeground(Color.white);
+                jlabel3.setBounds(130,100,w.window_width-p.panel_width,50);
+
+                JLabel jlabel4 = new JLabel("OTO TWÓJ WYNIK: ");
+                jlabel4.setFont(new Font("Verdana", 1, 20));
+                jlabel4.setForeground(Color.white);
+                jlabel4.setBounds(100,130,w.window_width-p.panel_width,50);
+
+                if (game_time < 60) bonus = 200;
+                else if (game_time < 120) bonus = 100;
+                else if (game_time < 200) bonus = 50;
+
+                this.add(jlabel3);
+                this.add(jlabel4);
+
+            }
+            else{
+                JLabel jlabel3 = new JLabel("SPRÓBUJ JESZCZE RAZ");
+                jlabel3.setFont(new Font("Verdana", 1, 20));
+                jlabel3.setForeground(Color.white);
+                jlabel3.setBounds(80,100,w.window_width-p.panel_width,50);
+
+                JLabel jlabel4 = new JLabel("OTO TWÓJ WYNIK: ");
+                jlabel4.setFont(new Font("Verdana", 1, 20));
+                jlabel4.setForeground(Color.white);
+                jlabel4.setBounds(100,130,w.window_width-p.panel_width,50);
+
+                this.add(jlabel3);
+                this.add(jlabel4);
+            }
+
+            JLabel jlabel5 = new JLabel("Zebrane śmieci: "+ trash_collected +"x100 = "+(100*trash_collected));
+            jlabel5.setFont(new Font("Verdana", 1, 20));
+            jlabel5.setForeground(Color.white);
+            jlabel5.setBounds(30,170,w.window_width-p.panel_width,50);
+
+            JLabel jlabel6 = new JLabel("Pozostałe życia: "+ lives +"x100 = "+(100*lives));
+            jlabel6.setFont(new Font("Verdana", 1, 20));
+            jlabel6.setForeground(Color.white);
+            jlabel6.setBounds(30,200,w.window_width-p.panel_width,50);
+
+            JLabel jlabel7 = new JLabel("Premia za czas przejścia: "+bonus);
+            jlabel7.setFont(new Font("Verdana", 1, 20));
+            jlabel7.setForeground(Color.white);
+            jlabel7.setBounds(30,230,w.window_width-p.panel_width,50);
+
+            JLabel jlabel8 = new JLabel("Suma: "+ (100*(trash_collected+lives)+bonus) + "/1400");
+            jlabel8.setFont(new Font("Verdana", 1, 20));
+            jlabel8.setForeground(Color.white);
+            jlabel8.setBounds(30,270,w.window_width-p.panel_width,50);
+
+            this.add(jlabel5);
+            this.add(jlabel6);
+            this.add(jlabel7);
+            this.add(jlabel8);
 
             revalidate();
             repaint();
