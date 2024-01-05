@@ -14,7 +14,7 @@ public class GameWindow extends JFrame{
 
         TaskPanel t = new TaskPanel(this);
         p = new GamePanel(this,t);
-        m = new MenuPanel(window_width, window_width - p.panel_width,this);
+        m = new MenuPanel(this);
         p.setBounds(0,m.menu_height,p.panel_width,p.panel_height);
         t.setBounds(p.panel_width,m.menu_height,window_width-p.panel_width,p.panel_height);
 

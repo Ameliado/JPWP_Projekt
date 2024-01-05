@@ -8,7 +8,7 @@ public class FinishGameButton extends JButton {
     public FinishGameButton(){
 
         this.setText("Zakończ grę");
-        this.setBackground(Color.gray);
+        this.setBackground(Color.pink);
         this.setFocusable(false);
         addActionListener (new B1());
     }

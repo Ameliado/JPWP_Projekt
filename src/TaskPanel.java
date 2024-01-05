@@ -182,8 +182,8 @@ public class TaskPanel extends JPanel {
             revalidate();
             repaint();
 
-            while (!(GameState.state == GameState.RESTART)){
-
+            while ((GameState.state == GameState.FINISH)){
+                System.out.println("");
             }
 
 

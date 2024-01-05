@@ -77,7 +77,14 @@ public class GamePanel extends JPanel implements Runnable{
                         break;
                     case RESTART:
                         game_time_start = System.nanoTime();
+                        objects.lives = 3;
+                        objects.trash_collected = 0;
+                        w.m.showPointsLives(objects.trash_collected,objects.lives);
                         player.setDefaultMovement();
+                        t.removeLabels();
+                        t.removeTrashImage();
+                        t.removeTrashButtons();
+                        tiles.loadMap();
                         GameState.state = GameState.GAME;
                         break;
                     case FINISH:
