@@ -95,8 +95,7 @@ public class TaskPanel extends JPanel {
 
     //adds and defines finish panel reaction based on trash collected and lives
     public void finishPanel(int trash_collected, int lives,float game_time){
-
-        Component[] componentList = this.getComponents();
+        p = w.getGamePanel();
 
         //win or defeat
         if (trash_collected == p.objects.trash_total || lives == 0){
