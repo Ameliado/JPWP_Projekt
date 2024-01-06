@@ -88,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
                         break;
                     case FINISH:
                         game_time_end = (System.nanoTime() - game_time_start)/1000000000;
-                        t.finishPanel(objects.trash_collected,objects.lives,game_time_end);
+                        t.finishPanel(collision.finish_collision,game_time_end);
                         break;
                 }
                 delta--;

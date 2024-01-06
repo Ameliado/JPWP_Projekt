@@ -4,6 +4,8 @@ public class CollisionHandler {
     GamePanel p;
     KeyHandler keys;
 
+    boolean finish_collision = false;
+
     public CollisionHandler(GamePanel p, KeyHandler keys){
         this.p = p;
         this.keys = keys;
@@ -177,6 +179,7 @@ public class CollisionHandler {
         p.keys.right = false;
         p.player.x_position -= p.block_size/2;
         p.repaint();
+        finish_collision = true;
         GameState.state = GameState.FINISH;
     }
 
