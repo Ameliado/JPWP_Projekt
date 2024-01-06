@@ -7,7 +7,6 @@ public class KeyHandler implements KeyListener {
     public boolean left;
     public boolean up;
     public boolean down;
-    public boolean enter;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -28,9 +27,6 @@ public class KeyHandler implements KeyListener {
         if (key == KeyEvent.VK_RIGHT) {
             right = true;
         }
-        if (key == KeyEvent.VK_ENTER){
-            enter = true;
-        }
     }
 
     @Override
@@ -47,9 +43,6 @@ public class KeyHandler implements KeyListener {
         }
         if (key == KeyEvent.VK_RIGHT) {
             right = false;
-        }
-        if (key == KeyEvent.VK_ENTER) {
-            enter = false;
         }
     }
 }

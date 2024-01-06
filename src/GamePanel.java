@@ -5,6 +5,7 @@ public class GamePanel extends JPanel implements Runnable{
     GameWindow w;
     TaskPanel t;
 
+    // map grid size settings
     public final int original_block_size = 16;
     public final int scale = 3;
     public final int block_size = scale * original_block_size;
@@ -46,7 +47,6 @@ public class GamePanel extends JPanel implements Runnable{
         g2.dispose();
     }
 
-
     public void run(){
         double draw_interval = 1000000000/FPS;
         double delta = 0;
@@ -60,8 +60,6 @@ public class GamePanel extends JPanel implements Runnable{
 
             if (delta >= 1){
                 switch (GameState.state) {
-                    case PAUSE:
-                        break;
                     case GAME:
                         t.repaint();
                         this.requestFocus();
@@ -80,6 +78,7 @@ public class GamePanel extends JPanel implements Runnable{
                         objects.lives = 3;
                         objects.trash_collected = 0;
                         w.m.showPointsLives(objects.trash_collected,objects.lives);
+                        TrashClickState.state = TrashClickState.NULL;
                         player.setDefaultMovement();
                         t.removeLabels();
                         t.removeTrashImage();

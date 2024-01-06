@@ -5,28 +5,32 @@ import javax.imageio.ImageIO;
 
 public class Player {
 
+    GamePanel p;
+    KeyHandler keys;
+
     public int direction;
     public BufferedImage mov1,mov2;
 
+    //player movement settings
     public int x_position;
     public int y_position;
     public int change_position;
 
+    //player collision settings
     public Rectangle solid_size;
     public boolean player_collision = false;
 
-    GamePanel p;
-    KeyHandler keys;
 
     public Player(GamePanel p, KeyHandler keys){
         this.p = p;
         this.keys = keys;
 
+        //player collision settings
         solid_size = new Rectangle();
         solid_size.x = 8;
-        solid_size.y = 16;
+        solid_size.y = 10;
         solid_size.width = p.block_size - 2* solid_size.x;
-        solid_size.height = p.block_size - solid_size.y;
+        solid_size.height = p.block_size - 2* solid_size.y;
 
         setDefaultMovement();
         getPlayerImage();
@@ -51,6 +55,7 @@ public class Player {
 
     public boolean which_image;
 
+    //simple movement animation
     public void checkWhichImage(boolean which_image){
         if(which_image == false) {
             this.which_image = true;
@@ -85,21 +90,21 @@ public class Player {
         p.collision.tileChecker(this);
         if (!player_collision){
             switch(direction) {
-                case 1:
+                case 1: //up
                     y_position -= change_position;
                     break;
-                case 2:
+                case 2: //down
                     y_position += change_position;
                     break;
-                case 3:
+                case 3: //left
                     x_position -= change_position;
                     break;
-                case 4:
+                case 4: //right
                     x_position += change_position;
                     break;
             }
 
-        direction = 0;
+        direction = 0; //no direction
         }
     }
 

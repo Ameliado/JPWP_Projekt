@@ -1,16 +1,27 @@
-import javax.swing.*;
-import java.awt.*;
 
 public class TaskHandler {
 
     GamePanel p;
-    int trash_collected = 0;
-    int lives = 3;
+
+    //object and lives count
+    final int trash_total = 9;
+    final int lives_total = 3;
+    public int trash_collected = 0;
+    public int lives = 3;
+
+    //points count
+    final int points_basic = 100;
+    final int bonus_60 = 200;
+    final int bonus_120 = 100;
+    final int bonus_200 = 50;
+    public int bonus = 0;
+    final int points_max = trash_total * points_basic + lives_total * points_basic + bonus_60;
 
     public TaskHandler(GamePanel p){
         this.p = p;
     }
 
+    //appropriate object reaction to collision
     public void whatObject(int tile){
         while(GameState.state == GameState.TASK){
             switch (tile){
@@ -19,12 +30,7 @@ public class TaskHandler {
                     paintTask(tile);
 
                     if (TrashClickState.state == TrashClickState.BIO){
-                        p.t.removeTrashButtons();
-                        p.t.removeTrashImage();
-                        TrashClickState.state = TrashClickState.NULL;
-                        trash_collected += 1;
-                        p.w.m.showPointsLives(trash_collected,lives);
-                        GameState.state = GameState.GAME;
+                       taskCompleted();
                     }
                     else if (!(TrashClickState.state == TrashClickState.NULL)){
                         checkLives();
@@ -35,12 +41,7 @@ public class TaskHandler {
                     paintTask(tile);
 
                     if (TrashClickState.state == TrashClickState.GLASS){
-                        p.t.removeTrashButtons();
-                        p.t.removeTrashImage();
-                        TrashClickState.state = TrashClickState.NULL;
-                        trash_collected += 1;
-                        p.w.m.showPointsLives(trash_collected,lives);
-                        GameState.state = GameState.GAME;
+                        taskCompleted();
                     }
                     else if (!(TrashClickState.state == TrashClickState.NULL)){
                         checkLives();
@@ -51,12 +52,7 @@ public class TaskHandler {
                     paintTask(tile);
 
                     if (TrashClickState.state == TrashClickState.PAPER){
-                        p.t.removeTrashButtons();
-                        p.t.removeTrashImage();
-                        TrashClickState.state = TrashClickState.NULL;
-                        trash_collected += 1;
-                        p.w.m.showPointsLives(trash_collected,lives);
-                        GameState.state = GameState.GAME;
+                        taskCompleted();
                     }
                     else if (!(TrashClickState.state == TrashClickState.NULL)){
                         checkLives();
@@ -67,12 +63,7 @@ public class TaskHandler {
                     paintTask(tile);
 
                     if (TrashClickState.state == TrashClickState.PLASTIC){
-                        p.t.removeTrashButtons();
-                        p.t.removeTrashImage();
-                        TrashClickState.state = TrashClickState.NULL;
-                        trash_collected += 1;
-                        p.w.m.showPointsLives(trash_collected,lives);
-                        GameState.state = GameState.GAME;
+                        taskCompleted();
                     }
                     else if (!(TrashClickState.state == TrashClickState.NULL)){
                         checkLives();
@@ -83,12 +74,7 @@ public class TaskHandler {
                     paintTask(tile);
 
                     if (TrashClickState.state == TrashClickState.WASTE){
-                        p.t.removeTrashButtons();
-                        p.t.removeTrashImage();
-                        TrashClickState.state = TrashClickState.NULL;
-                        trash_collected += 1;
-                        p.w.m.showPointsLives(trash_collected,lives);
-                        GameState.state = GameState.GAME;
+                        taskCompleted();
                     }
                     else if (!(TrashClickState.state == TrashClickState.NULL)){
                         checkLives();
@@ -98,6 +84,7 @@ public class TaskHandler {
         }
     }
 
+    //checks if there are lives left
     public void checkLives(){
         if (lives > 0){
             lives -= 1;
@@ -118,5 +105,14 @@ public class TaskHandler {
         p.t.addTrashButtons();
     }
 
+    //task completion actions
+    public void taskCompleted(){
+        p.t.removeTrashButtons();
+        p.t.removeTrashImage();
+        TrashClickState.state = TrashClickState.NULL;
+        trash_collected += 1;
+        p.w.m.showPointsLives(trash_collected,lives);
+        GameState.state = GameState.GAME;
+    }
 
 }

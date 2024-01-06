@@ -1,4 +1,3 @@
-import javax.swing.*;
 
 public class CollisionHandler {
 
@@ -10,6 +9,7 @@ public class CollisionHandler {
         this.keys = keys;
     }
 
+    // collision and object interaction
     public void tileChecker(Player pl){
         int player_left_x = pl.x_position + pl.solid_size.x;
         int player_right_x = player_left_x + pl.solid_size.width;
@@ -37,7 +37,7 @@ public class CollisionHandler {
                     finishCollisionFix();
                 }
 
-                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
+                if ((tile1 > 2 || tile2 > 2)){
                     GameState.state = GameState.TASK;
                     p.t.removeLabels();
                     if (tile1 > 2)
@@ -72,7 +72,7 @@ public class CollisionHandler {
                     finishCollisionFix();
                 }
 
-                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
+                if ((tile1 > 2 || tile2 > 2)){
                     GameState.state = GameState.TASK;
                     p.t.removeLabels();
                     if (tile1 > 2)
@@ -108,7 +108,7 @@ public class CollisionHandler {
                     finishCollisionFix();
                 }
 
-                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
+                if ((tile1 > 2 || tile2 > 2)){
                     GameState.state = GameState.TASK;
                     p.t.removeLabels();
                     if (tile1 > 2)
@@ -144,9 +144,10 @@ public class CollisionHandler {
                     finishCollisionFix();
                 }
 
-                if ((tile1 > 2 || tile2 > 2)/*&&keys.enter*/){
+                if ((tile1 > 2 || tile2 > 2)){
                     GameState.state = GameState.TASK;
                     p.t.removeLabels();
+
                     if (tile1 > 2)
                     {
                         p.objects.whatObject(tile1);
@@ -171,9 +172,10 @@ public class CollisionHandler {
 
     }
 
+    // fixes player position if game is not finished yet
     public void finishCollisionFix(){
         p.keys.right = false;
-        p.player.x_position -= p.block_size;
+        p.player.x_position -= p.block_size/2;
         p.repaint();
         GameState.state = GameState.FINISH;
     }

@@ -13,6 +13,7 @@ public class FinishGameButton extends JButton {
         addActionListener (new B1());
     }
 
+    //quits game with after confirmation
     private class B1 implements ActionListener{
         public void actionPerformed (ActionEvent a) {
             if (JOptionPane.showConfirmDialog( null,"Czy na pewno chcesz wyjść z gry?","Wyjście",

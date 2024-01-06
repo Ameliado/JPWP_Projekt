@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TrashImage extends JButton {
-    private final String text;
-    private final int x,y;
-    private final int width, height;
+    final String text;
+    final int x,y;
+    final int width, height;
 
     public TrashImage(String text, int x, int y, int width, int height, ImageIcon icon) {
         super(text, icon);

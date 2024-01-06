@@ -6,15 +6,16 @@ public class TaskPanel extends JPanel {
     public GameWindow w;
     public GamePanel p;
 
-    public int bonus = 0;
-
     public TaskPanel(GameWindow w){
         super();
-        this.setLayout(null);
+
         this.w = w;
+
+        this.setLayout(null);
         setBackground(Color.DARK_GRAY);
     }
 
+    //draws trash image which was stepped on
     public void drawTrashImage(int tile){
         p = w.getGamePanel();
 
@@ -36,14 +37,11 @@ public class TaskPanel extends JPanel {
         this.add(trash);
     }
 
+    //deletes trash image from task
     public void removeTrashImage(){
         Component[] componentList = this.getComponents();
 
-        for(Component c : componentList){
-            if(c instanceof JLabel){
-                this.remove(c);
-            }
-        }
+        removeLabels();
 
         for(Component c : componentList){
             if(c instanceof TrashImage){
@@ -54,6 +52,7 @@ public class TaskPanel extends JPanel {
         repaint();
     }
 
+    //draws trashcan buttons in task
     public void addTrashButtons() {
 
         TrashCanButton paper = new TrashCanButton("paper", 40, 350, 100, 200, new ImageIcon("res/trashcans/papercan.png"));
@@ -81,6 +80,7 @@ public class TaskPanel extends JPanel {
 
     }
 
+    //deletes trashcan buttons from task
     public void removeTrashButtons(){
         Component[] componentList = this.getComponents();
 
@@ -93,19 +93,15 @@ public class TaskPanel extends JPanel {
         repaint();
     }
 
+    //adds and defines finish panel reaction based on trash collected and lives
     public void finishPanel(int trash_collected, int lives,float game_time){
 
         Component[] componentList = this.getComponents();
 
-        if (trash_collected == 9 || lives == 0){
+        //win or defeat
+        if (trash_collected == p.objects.trash_total || lives == 0){
 
-            for(Component c : componentList){
-                if(c instanceof JLabel){
-                    this.remove(c);
-                }
-            }
-            revalidate();
-            repaint();
+            removeLabels();
 
             JLabel jlabel = new JLabel("KONIEC GRY");
             jlabel.setFont(new Font("Verdana", 1, 20));
@@ -120,60 +116,53 @@ public class TaskPanel extends JPanel {
             this.add(jlabel);
             this.add(jlabel2);
 
+            JLabel jlabel3;
             if (trash_collected == 9){
-                JLabel jlabel3 = new JLabel("GRATULACJE");
+                jlabel3 = new JLabel("GRATULACJE");
                 jlabel3.setFont(new Font("Verdana", 1, 20));
                 jlabel3.setForeground(Color.white);
                 jlabel3.setBounds(130,100,w.window_width-p.panel_width,50);
 
-                JLabel jlabel4 = new JLabel("OTO TWÓJ WYNIK: ");
-                jlabel4.setFont(new Font("Verdana", 1, 20));
-                jlabel4.setForeground(Color.white);
-                jlabel4.setBounds(100,130,w.window_width-p.panel_width,50);
-
-                if (game_time < 60) bonus = 200;
-                else if (game_time < 120) bonus = 100;
-                else if (game_time < 200) bonus = 50;
-
-                this.add(jlabel3);
-                this.add(jlabel4);
+                if (game_time < 60) p.objects.bonus = p.objects.bonus_60;
+                else if (game_time < 120) p.objects.bonus = p.objects.bonus_120;
+                else if (game_time < 200) p.objects.bonus = p.objects.bonus_200;
 
             }
             else{
-                JLabel jlabel3 = new JLabel("SPRÓBUJ JESZCZE RAZ");
+                jlabel3 = new JLabel("SPRÓBUJ JESZCZE RAZ");
                 jlabel3.setFont(new Font("Verdana", 1, 20));
                 jlabel3.setForeground(Color.white);
                 jlabel3.setBounds(80,100,w.window_width-p.panel_width,50);
 
-                JLabel jlabel4 = new JLabel("OTO TWÓJ WYNIK: ");
-                jlabel4.setFont(new Font("Verdana", 1, 20));
-                jlabel4.setForeground(Color.white);
-                jlabel4.setBounds(100,130,w.window_width-p.panel_width,50);
-
-                this.add(jlabel3);
-                this.add(jlabel4);
             }
+            this.add(jlabel3);
 
-            JLabel jlabel5 = new JLabel("Zebrane śmieci: "+ trash_collected +"x100 = "+(100*trash_collected));
+            JLabel jlabel4 = new JLabel("OTO TWÓJ WYNIK: ");
+            jlabel4.setFont(new Font("Verdana", 1, 20));
+            jlabel4.setForeground(Color.white);
+            jlabel4.setBounds(100,130,w.window_width-p.panel_width,50);
+
+            JLabel jlabel5 = new JLabel("Zebrane śmieci: "+ trash_collected +"x"+ p.objects.points_basic+" = "+(p.objects.points_basic*trash_collected));
             jlabel5.setFont(new Font("Verdana", 1, 20));
             jlabel5.setForeground(Color.white);
             jlabel5.setBounds(30,170,w.window_width-p.panel_width,50);
 
-            JLabel jlabel6 = new JLabel("Pozostałe życia: "+ lives +"x100 = "+(100*lives));
+            JLabel jlabel6 = new JLabel("Pozostałe życia: "+ lives +"x"+ p.objects.points_basic+" = "+(p.objects.points_basic*lives));
             jlabel6.setFont(new Font("Verdana", 1, 20));
             jlabel6.setForeground(Color.white);
             jlabel6.setBounds(30,200,w.window_width-p.panel_width,50);
 
-            JLabel jlabel7 = new JLabel("Premia za czas przejścia: "+bonus);
+            JLabel jlabel7 = new JLabel("Premia za czas przejścia: "+p.objects.bonus);
             jlabel7.setFont(new Font("Verdana", 1, 20));
             jlabel7.setForeground(Color.white);
             jlabel7.setBounds(30,230,w.window_width-p.panel_width,50);
 
-            JLabel jlabel8 = new JLabel("Suma: "+ (100*(trash_collected+lives)+bonus) + "/1400");
+            JLabel jlabel8 = new JLabel("Suma: "+ (p.objects.points_basic*(trash_collected+lives)+p.objects.bonus) + "/"+p.objects.points_max);
             jlabel8.setFont(new Font("Verdana", 1, 20));
             jlabel8.setForeground(Color.white);
             jlabel8.setBounds(30,270,w.window_width-p.panel_width,50);
 
+            this.add(jlabel4);
             this.add(jlabel5);
             this.add(jlabel6);
             this.add(jlabel7);
@@ -188,17 +177,12 @@ public class TaskPanel extends JPanel {
 
 
         }
+        // not all trash collected but stepped on finish tile
         else {
 
-            for(Component c : componentList){
-                if(c instanceof JLabel){
-                    this.remove(c);
-                }
-            }
-            revalidate();
-            repaint();
+            removeLabels();
 
-            JLabel jlabel3 = new JLabel("Zostało jeszcze "+(9-trash_collected));
+            JLabel jlabel3 = new JLabel("Zostało jeszcze "+(p.objects.trash_total-trash_collected));
             jlabel3.setFont(new Font("Verdana", 1, 20));
             jlabel3.setForeground(Color.white);
             jlabel3.setBounds(90,0,400,50);

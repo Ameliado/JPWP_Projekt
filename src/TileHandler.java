@@ -65,6 +65,7 @@ public class TileHandler {
         }
     }
 
+    //loads map from txt to an array
     public void loadMap(){
         try{
             InputStream i = getClass().getClassLoader().getResourceAsStream("map.txt");

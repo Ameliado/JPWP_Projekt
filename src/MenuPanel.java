@@ -26,6 +26,7 @@ public class MenuPanel extends JPanel {
 
     }
 
+    //shows current point and lives count on menu panel
     public void showPointsLives(int trash_collected, int lives) {
         Component[] componentList = this.getComponents();
 
